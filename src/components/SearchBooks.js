@@ -6,14 +6,14 @@ import * as BooksAPI from '../BooksAPI'
 class SearchBooks extends React.Component {
   controller = new AbortController()
   state = {
-    bookIds: []
+    bookids: []
   }
 
   onSearchInput = (value) => {
     BooksAPI.search(value, this.controller.signal)
       .then(books => {
         this.setState({
-          bookIds: books instanceof Array
+          bookids: books instanceof Array
             ? books.map(book => book.id)
             : []
         })
@@ -23,13 +23,20 @@ class SearchBooks extends React.Component {
       })
   }
 
+  onShelfChange = (id, shelf) => {
+    BooksAPI.update({ id }, shelf, this.controller.signal)
+      .catch(err => {
+        console.log(`SearchBooks.onShelfChange(${id}, ${shelf})`, err)
+      })
+  }
+
   render () {
     return (
       <div className="search-books">
         <SearchBar onSearchInput={this.onSearchInput} />
         <SearchResults
-          bookIds={this.state.bookIds}
-          onShelfChange={this.props.onShelfChange}
+          bookids={this.state.bookids}
+          onShelfChange={this.onShelfChange}
         />
       </div>
     )

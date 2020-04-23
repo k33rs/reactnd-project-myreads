@@ -1,15 +1,15 @@
 import React from 'react'
 import Book from './Book'
 
-const SearchResults = ({ bookIds }) => (
+const SearchResults = ({ bookids, onShelfChange }) => (
   <div className="search-books-results">
     <ol className="books-grid">
       {
-        bookIds.map(bookId => (
-          <li key={bookId}>
+        bookids.map(bookid => (
+          <li key={bookid}>
             <Book
-              bookId={bookId}
-              onShelfChange={this.props.onShelfChange}
+              id={bookid}
+              onShelfChange={onShelfChange}
             />
           </li>
         ))

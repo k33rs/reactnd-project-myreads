@@ -15,6 +15,7 @@ class Book extends React.Component {
   }
 
   onShelfChange = (shelf) => {
+    this.setState({ shelf })
     this.props.onShelfChange(this.props.id, shelf)
   }
 
@@ -40,7 +41,7 @@ class Book extends React.Component {
           />
         </div>
         <div className="book-title">{title}</div>
-        <div className="book-authors">{authors.toString()}</div>
+        <div className="book-authors">{authors ? authors.toString() : ''}</div>
       </div>
     )
   }
