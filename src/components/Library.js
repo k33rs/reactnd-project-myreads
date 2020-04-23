@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Bookshelf from './Bookshelf'
 import * as BooksAPI from '../BooksAPI'
 import ShelfTypes from '../utils/ShelfTypes'
@@ -47,9 +48,11 @@ class Library extends React.Component {
             />
           </div>
         </div>
-        <div className="open-search">
-          <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-        </div>
+        <Link to='/search'>
+          <div className="open-search">
+            <button>Add a book</button>
+          </div>
+        </Link>
       </div>
     )
   }
