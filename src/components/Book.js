@@ -14,10 +14,10 @@ class Book extends React.Component {
   }
 
   getStateFromSession = () => {
-    const storedState = sessionStorage.getItem(this.props.bookId)
-    return storedState
-      ? JSON.parse(storedState)
-      : storedState
+    const sessionState = sessionStorage.getItem(this.props.bookId)
+    return sessionState
+      ? JSON.parse(sessionState)
+      : sessionState
   }
 
   setSessionState = state => {
@@ -25,9 +25,9 @@ class Book extends React.Component {
   }
 
   componentDidMount () {
-    const localState = this.getStateFromSession()
-    if (localState) {
-      this.setState(localState)
+    const sessionState = this.getStateFromSession()
+    if (sessionState) {
+      this.setState(sessionState)
       return
     }
 
