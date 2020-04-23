@@ -12,33 +12,35 @@ const headers = {
   'Authorization': token
 }
 
-export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
+export const get = (bookId, signal) =>
+  fetch(`${api}/books/${bookId}`, { headers, signal })
     .then(res => res.json())
     .then(data => data.book)
 
-export const getAll = () =>
-  fetch(`${api}/books`, { headers })
+export const getAll = (signal) =>
+  fetch(`${api}/books`, { headers, signal })
     .then(res => res.json())
     .then(data => data.books)
 
-export const update = (book, shelf) =>
+export const update = (book, shelf, signal) =>
   fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ shelf })
+    body: JSON.stringify({ shelf }),
+    signal
   }).then(res => res.json())
 
-export const search = (query) =>
+export const search = (query, signal) =>
   fetch(`${api}/search`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ query })
+    body: JSON.stringify({ query }),
+    signal
   }).then(res => res.json())
     .then(data => data.books)
