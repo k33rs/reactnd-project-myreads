@@ -8,9 +8,7 @@ class Book extends React.Component {
   state = {
     title: '',
     authors: [],
-    imageLinks: {
-      thumbnail: ''
-    },
+    thumbnail: '',
     shelf: ''
   }
 
@@ -21,12 +19,7 @@ class Book extends React.Component {
 
   render () {
     const {
-      title,
-      authors,
-      imageLinks: {
-        thumbnail
-      },
-      shelf
+      title, authors, thumbnail, shelf
     } = this.state
     return (
       <div className="book">
@@ -51,17 +44,13 @@ class Book extends React.Component {
       .then(({
         title,
         authors,
-        imageLinks: {
-          thumbnail
-        },
+        imageLinks = { thumbnail: '' },
         shelf
       }) => {
         this.setState({
           title,
           authors,
-          imageLinks: {
-            thumbnail
-          },
+          thumbnail: imageLinks.thumbnail,
           shelf
         })
       })
